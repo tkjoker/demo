@@ -1,0 +1,190 @@
+                                                                                                            .center {
+                                                                                                                width: 1000px;
+                                                                                                                margin: 0 auto;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .fz14 {
+                                                                                                                font-size: 16px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .cRed {
+                                                                                                                color: #ff3232;
+                                                                                                            }
+                                                                                                            /* 顶部 B */
+                                                                                                            
+                                                                                                            .top {
+                                                                                                                height: 47px;
+                                                                                                                background-color: #E9E8E8;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .top_c {
+                                                                                                                height: 47px;
+                                                                                                                line-height: 47px;
+                                                                                                            }
+                                                                                                            /* 顶部 E */
+                                                                                                            /* LOGO B */
+                                                                                                            
+                                                                                                            .logo {
+                                                                                                                background-color: #C70202;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_c {
+                                                                                                                height: 99px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_left h1 a {
+                                                                                                                display: inline-block;
+                                                                                                                width: 256px;
+                                                                                                                height: 99px;
+                                                                                                                background: url(../images/logo.jpg);
+                                                                                                                text-indent: -300em;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_center {
+                                                                                                                height: 28px;
+                                                                                                                background-color: white;
+                                                                                                                padding: 1px;
+                                                                                                                margin-top: 34px;
+                                                                                                                margin-left: 70px;
+                                                                                                                border-radius: 5px;
+                                                                                                            }
+                                                                                                            /* 修改搜索框的高度宽度和外框颜色 */
+                                                                                                            
+                                                                                                            .logo .l_center .txt {
+                                                                                                                width: 240px;
+                                                                                                                height: 28px;
+                                                                                                                outline: none;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_center .btn {
+                                                                                                                width: 60px;
+                                                                                                                height: 28px;
+                                                                                                                background-color: #C70202;
+                                                                                                                color: white;
+                                                                                                                border-radius: 0px 5px 5px 0px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_right {
+                                                                                                                margin-top: 35px;
+                                                                                                            }
+                                                                                                            /* 给每一个li右边距设置为20 */
+                                                                                                            
+                                                                                                            .logo .l_right li {
+                                                                                                                float: left;
+                                                                                                                height: 30px;
+                                                                                                                line-height: 30px;
+                                                                                                                margin-left: 20px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_right a {
+                                                                                                                color: #ffffff;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .logo .l_right input {
+                                                                                                                width: 56px;
+                                                                                                                height: 30px;
+                                                                                                                font-size: 14px;
+                                                                                                            }
+                                                                                                            /* 设置中间对齐 */
+                                                                                                            
+                                                                                                            .logo .l_right li b {
+                                                                                                                display: inline-block;
+                                                                                                                width: 27px;
+                                                                                                                height: 23px;
+                                                                                                                background: url(../images/spnite.png);
+                                                                                                                vertical-align: middle;
+                                                                                                            }
+                                                                                                            /* 精灵图切片 待定等PS2020装好再做*/
+                                                                                                            
+                                                                                                            .logo .l_right .sina {
+                                                                                                                background-position: 0 -23px;
+                                                                                                            }
+                                                                                                            /* LOGO E */
+                                                                                                            /* 底部 B */
+                                                                                                            
+                                                                                                            .foot {
+                                                                                                                height: 273px;
+                                                                                                                padding: 10px;
+                                                                                                                background-color: #2f2f2f;
+                                                                                                            }
+                                                                                                            /* 在大的div里面嵌套一个小div */
+                                                                                                            /* 并且设置大div的内边距是10px */
+                                                                                                            
+                                                                                                            .foot .f_border {
+                                                                                                                height: 273px;
+                                                                                                                border: 1px solid #FFD283;
+                                                                                                            }
+                                                                                                            /* 绝对定位 */
+                                                                                                            /* 用PS画一个圆，再放入位置 */
+                                                                                                            
+                                                                                                            .foot .f_border b {
+                                                                                                                position: absolute;
+                                                                                                                width: 17px;
+                                                                                                                height: 17px;
+                                                                                                                background: url(#);
+                                                                                                            }
+                                                                                                            /* 把b1放到左上角 */
+                                                                                                            /* 设置位置为-1,盖住边角 */
+                                                                                                            
+                                                                                                            .foot .f_border .b1 {
+                                                                                                                top: -1px;
+                                                                                                                left: -1px;
+                                                                                                                background-position: right bottom;
+                                                                                                            }
+                                                                                                            /* 把b2放到右上角 */
+                                                                                                            
+                                                                                                            .foot .f_border .b2 {
+                                                                                                                top: -1px;
+                                                                                                                right: -1px;
+                                                                                                                background-position: left bottom;
+                                                                                                            }
+                                                                                                            /* 把b3放到右下角 */
+                                                                                                            
+                                                                                                            .foot .f_border .b3 {
+                                                                                                                bottom: -1px;
+                                                                                                                right: -1px;
+                                                                                                                background-position: left top;
+                                                                                                            }
+                                                                                                            /* 把b4放到左下角*/
+                                                                                                            
+                                                                                                            .foot .f_border .b4 {
+                                                                                                                bottom: -1px;
+                                                                                                                left: -1px;
+                                                                                                                background-position: right top;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_left {
+                                                                                                                margin-top: 55px;
+                                                                                                                color: #cccccc;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_left li {
+                                                                                                                height: 33px;
+                                                                                                                line-height: 33px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_right {
+                                                                                                                margin-top: 34px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_right li {
+                                                                                                                float: left;
+                                                                                                                width: 95px;
+                                                                                                                height: 77px;
+                                                                                                                margin-left: 20px;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_right li a {
+                                                                                                                display: inline-block;
+                                                                                                                color: #666666;
+                                                                                                                text-align: center;
+                                                                                                            }
+                                                                                                            
+                                                                                                            .foot .f_right li s {
+                                                                                                                margin-bottom: 10px;
+                                                                                                                display: inline-block;
+                                                                                                                width: 95px;
+                                                                                                                height: 77px;
+                                                                                                                background: url(../images/spnite.png) no-repeat -79px 0px;
+                                                                                                            }
+                                                                                                            /* 底部 E*/

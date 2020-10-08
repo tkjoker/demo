@@ -1,0 +1,110 @@
+/* 存放CSS初始化的代码 */
+
+
+/* 初始化代码没有标准，按照自己的需求来 */
+
+
+/* 清除大多数标签默认的margin和padding */
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+form,
+img {
+    margin: 0;
+    padding: 0
+}
+
+
+/* 去掉图片的边框 */
+
+img {
+    border: 0
+}
+
+
+/* 把图片改成块级元素 */
+
+
+/* img {
+    display: block
+} */
+
+
+/* 去除ul，ol前面的小点点 */
+
+ul,
+ol {
+    list-style: none
+}
+
+
+/* 去掉input标签默认的padding-top和padding-bottom和border*/
+
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "SimSun", "宋体";
+    border: none;
+}
+
+
+/* 去掉a标签的下划线 */
+
+a {
+    text-decoration: none;
+}
+
+
+/* 给body设置一个统一的字体样式和背景颜色 */
+
+
+/* 12像素的文字看起来会比较舒服，字体颜色#4c4c4c会比黑色好一点 */
+
+body {
+    font: normal normal 12px "SimSun";
+    color: #4c4c4c;
+    background-color: #fae8c8;
+}
+
+
+/* 左浮动 */
+
+.fl {
+    float: left;
+}
+
+
+/* 右浮动 */
+
+.fr {
+    float: right;
+}
+
+
+/* 清除浮动 */
+
+.clearfix::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+
+/* 兼容ie6 */
+
+.clearfix {
+    zoom: 1;
+}

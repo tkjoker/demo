@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myObj = new Object(),
+            str = "myString",
+            rand = Math.random(),
+            obj = new Object();
+
+        myObj.type = "Dot syntax";
+        myObj["date created"] = "String with space";
+        myObj[str] = "String value";
+        myObj[rand] = "Random Number";
+        myObj[obj] = "Object";
+        myObj[""] = "Even an empty string";
+
+        console.log(myObj);
+
+        // 使用构造函数
+
+        // 为了定义对象类型，为对象类型创建一个函数以声明类型的名称、属性和方法。
+        // 例如，你想为汽车创建一个类型，并且将这类对象称为 car ，并且拥有属性 make, model, 和 year，你可以创建如下的函数：
+        function Car(make, model, year) {
+            this.make = make;
+            this.model = model;
+            this.year = year;
+        }
+
+        function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        var rand = new Person("Rand McKinnon", 33, "M");
+        var ken = new Person("Ken Jones", 39, "M");
+
+        // 使用Object.create方法
+        // Animal properties and method encapsulation
+        var Animal = {
+            type: "Invertebrates", // 属性默认值
+            displayType: function() { // 用于显示type属性的方法
+                console.log(this.type);
+            }
+        }
+
+        // 创建一种新的动物——animal1 
+        var animal1 = Object.create(Animal);
+        animal1.displayType(); // Output:Invertebrates
+
+        // 创建一种新的动物——Fishes
+        var fish = Object.create(Animal);
+        fish.type = "Fishes";
+        fish.displayType(); // Output:Fishes
+
+        var o = {
+            a: 7,
+            get b() {
+                return this.a + 1;
+            },
+            set c(x) {
+                this.a = x / 2
+            }
+        };
+
+        console.log(o.a); // 7
+        console.log(o.b); // 8
+        o.c = 50;
+        console.log(o.a); // 25
+
+        // 比较对象
+        // 两个变量, 两个具有同样的属性、但不相同的对象
+        var fruit = {
+            name: "apple"
+        };
+        var fruitbear = {
+            name: "apple"
+        };
+
+        fruit == fruitbear // return false
+        fruit === fruitbear // return false
+            // 两个变量, 同一个对象
+        var fruit = {
+            name: "apple"
+        };
+        var fruitbear = fruit; // 将fruit的对象引用(reference)赋值给 fruitbear
+        // 也称为将fruitbear“指向”fruit对象
+        // fruit与fruitbear都指向同样的对象
+        fruit == fruitbear // return true
+        fruit === fruitbear // return true
+    </script>
+</body>
+
+</html>

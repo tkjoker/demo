@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建1个16字节固定长度的缓冲
+        let buffer = new ArrayBuffer(16);
+        // 有了一段初始化为0的内存，确认一下数据的字节长度
+        if (buffer.byteLength === 16) {
+            console.log("Yes, it's 16 bytes.");
+        } else {
+            console.log("Oh no, it's the wrong size!");
+        }
+        // 创建一个视图，将缓冲内的数据初始化为1个32位的有符号整数组
+        let int32View = new Int32Array(buffer);
+        // 像普通数组一样访问该数组中的元素
+        for (var i = 0; i < int32View.length; i++) {
+            int32View[i] = i * 2;
+        }
+        // 该代码会将数组以0,2,4和6填充（一共4个4字节元素，所有总长度为16字节）
+
+        // 同一数据的多个视图
+        // 创建1个2字节的整数视图，共享上文的4字节整数视图的缓冲，以2字节打印缓冲里面的数据这次会得到0,0,2,0,4,0,6,0
+        let int16View = new Int16Array(buffer);
+        for (let i = 1; i < Int16Array.length; i++) {
+            console.log("Entry" + i + ":" + int16View[i]);
+        }
+        int16View[0] = 32;
+        console.log("Entry 0 in the 32-bit array is now" + int32View[0]);
+        // 这次输出是"Entry 0 in the 32-bit array is now 32"。这2个数组都是同一数据以不同格式展示出来的视图。
+
+        // 转换为普通数组
+        // 调用Array.from实现这种转换，如果Array.from不支持的话，也可以通过以下代码实现
+        let typeArray = new Uint8Array([1, 2, 3, 4]),
+            normalArray = Array.prototype.slice.call(typedArray);
+        normalArray.length === 4;
+        normalArray.comstructor === Array;
+    </script>
+</body>
+
+</html>

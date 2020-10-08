@@ -1,0 +1,44 @@
+h1 {
+    color: red;
+}
+
+p,
+li {
+    color: green;
+}
+
+li {
+    list-style-type: none;
+}
+
+.special,
+span.special {
+    color: orange;
+    font-weight: bold;
+}
+
+li em {
+    color: rebeccapurple;
+}
+
+h1+p {
+    font-size: 200%;
+}
+
+
+/* 让没有被访问的链接颜色变成粉色，访问过的链接变成绿色 */
+
+a:link {
+    color: pink;
+}
+
+a:visited {
+    color: green;
+}
+
+
+/* 鼠标悬停时，移除下划线 */
+
+a:hover {
+    text-decoration: none;
+}

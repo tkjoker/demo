@@ -1,0 +1,107 @@
+        /* spacing */
+        
+        table {
+            /* 根据列标题的宽度来规定列的宽度 */
+            table-layout: fixed;
+            width: 100%;
+            /* 使表格边框合为一条 */
+            border-collapse: collapse;
+            border: 3px solid purple;
+        }
+        /* 继承父元素 */
+        
+        thead th:nth-child(1) {
+            width: 30%;
+        }
+        
+        thead th:nth-child(2) {
+            width: 20%;
+        }
+        
+        thead th:nth-child(3) {
+            width: 15%;
+        }
+        
+        thead th:nth-child(4) {
+            width: 35%;
+        }
+        /* 使数据项有了一些空间，使表看起来更加清晰 */
+        
+        th,
+        td {
+            padding: 20px;
+        }
+        /* typography */
+        
+        html {
+            font-family: 'helvetica neue', helvetica, arial, sans-serif;
+        }
+        
+        thead th,
+        tfoot th {
+            font-family: 'Rock Salt', cursive;
+        }
+        
+        th {
+            letter-spacing: 2px;
+        }
+        
+        td {
+            letter-spacing: 1px;
+        }
+        
+        tbody td {
+            text-align: center;
+        }
+        
+        tfoot th {
+            text-align: right;
+        }
+        
+        thead,
+        tfoot {
+            background: url(leopardskin.jpg);
+            color: white;
+            text-shadow: 1px 1px 1px black;
+        }
+        
+        thead th,
+        tfoot th,
+        tfoot td {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+            border: 3px solid purple;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background-color: #ff33cc;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #e495e4;
+        }
+        
+        tbody tr {
+            background-image: url(noise.png);
+        }
+        
+        table {
+            background-color: #ff33cc;
+        }
+        /* 样式化标题 */
+        
+        caption {
+            font-family: 'Rock Salt', cursive;
+            padding: 20px;
+            font-style: italic;
+            caption-side: bottom;
+            color: #666;
+            text-align: right;
+            letter-spacing: 1px;
+        }
+        /* 小贴士 */
+        /* 使您的表格标记尽可能简单，并且保持灵活性，例如使用百分比，这样设计就更有响应性。*/
+        /* 使用 table-layout: fixed 创建更可控的表布局，可以通过在标题width中设置width来轻松设置列的宽度。 */
+        /* 使用 border-collapse: collapse 使表元素边框合并，生成一个更整洁、更易于控制的外观。 使用<thead>, */
+        /* <tbody>和<tfoot>将表格分割成逻辑块，并提供额外的应用CSS的地方，因此如果需要的话，可以更容易地将样式层叠在一起。  */
+        /* 使用斑马线来让其他行更容易阅读。 */
+        /* 使用 text-align直线对齐您的<th>和<td>文本，使内容更整洁、更易于跟随。 */

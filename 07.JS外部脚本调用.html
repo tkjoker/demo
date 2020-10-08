@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 这三个脚本调用的顺序是不确定的 -->
+    <script async src="js/vendor/jquery.js"></script>
+
+    <script async src="js/script2.js"></script>
+
+    <script async src="js/script3.js"></script>
+
+    <!-- 使用了defer属性 -->
+    <script defer src="js/vendor/jquery.js"></script>
+
+    <script defer src="js/script2.js"></script>
+
+    <script defer src="js/script3.js"></script>
+    <!-- 如果无需等待页面解析且无依赖独立运行，应使用async -->
+    <!-- 如果脚本需要等待页面解析且依赖于其他脚本，调用应该使用defer，然后按顺序放置 -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 面向对象编程，通过原型(prototype)来实现面向对象编程
+        // 原型是指我们要创建xiaoming这个具体的学生时，我们并没有一个Student类型可用，怎么办呢？
+
+        // 恰好有一个现成的对象:
+        var robot = {
+            name: 'Robor',
+            height: 1.6,
+            run: function() {
+                console.log(this.name + 'is running...');
+            }
+        }
+
+        // 我们看这个robot对象有名字，有身高，还会跑。干脆就用这个来"创建"小明得了
+        // 于是我们把它改名为Student，然后创建出xiaoming:
+        var Student = {
+            name: 'Robot',
+            height: 1.2,
+            run: function() {
+                console.log(this.name + 'is running...');
+            }
+        };
+
+        var xiaoming = {
+            name: '小明'
+        };
+
+        xiaoming._proto_ = Student;
+
+        // 注意最后一行代码把xiaoming的原型指向了对象Student，看上去xiaoming仿佛是从Student继承下来的
+        xiaoming.name; // '小明'
+        xiaoming.run(); // 小明 is running...
+
+        // JavaScript中的原型链和Java的Class区别就在它没有'Class'的概念，所有对象都是实例，继承关系只不过把一个对象的原型指向另一个对象而已
+        // 如果你把xiaoming的原型指向其他对象:
+        var Bird = {
+            fly: function() {
+                console.log(this.name + 'is running...');
+            }
+        };
+
+        xiaoming.__proto__ = Bird;
+        // 现在小明无法run()了
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

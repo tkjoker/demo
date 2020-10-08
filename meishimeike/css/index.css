@@ -1,0 +1,287 @@
+/* 用边框实现红色下划线效果 */
+
+.cRed {
+    border-bottom: 1px solid red;
+}
+
+
+/* 把white的权重提到最高 */
+
+.bgRed {
+    background-color: red;
+}
+
+.white {
+    color: white !important;
+}
+
+
+/* 为p1,p2设置公用样式/行高/距离左边10像素 */
+
+.more {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #666666;
+    font-size: 14px;
+}
+
+.p1 {
+    font: normal 700 18px/36px "微软雅黑";
+    padding-left: 10px;
+}
+
+.p2 {
+    font: normal 700 12px "微软雅黑";
+    padding-left: 10px;
+}
+
+
+/* 给h2标签设置公用样式 */
+
+
+/* 给h2的font属性设置行高可以实现垂直居中 */
+
+.h2Title {
+    font: normal 700 24px/76px "微软雅黑";
+    text-align: center;
+    position: relative;
+}
+
+
+/* 首页导航 B */
+
+
+/* 给导航栏设置高度/背景颜色 */
+
+.nav {
+    height: 77px;
+    background-color: white;
+}
+
+.nav .nav_c {
+    height: 77px;
+}
+
+
+/* 为导航条的li标签设置浮动/大小/行高/字体 */
+
+.nav .nav_c li {
+    float: left;
+    font: normal normal 18px/77px "微软雅黑";
+    margin-right: 25px;
+}
+
+.nav .nav_c li a {
+    color: #666666;
+}
+
+
+/* 鼠标悬停在导航栏上，字体会变成红色 */
+
+.nav .nav_c li a:hover {
+    color: red;
+}
+
+
+/* 首页导航 E */
+
+
+/* 首页banner B */
+
+
+/* 给首页banner按实际情况设置宽度 */
+
+.banner ul {
+    width: 1320px;
+    margin: 0 auto;
+}
+
+
+/* CSS中定位使用子绝父相(子类绝对位置和父类相对位置) */
+
+
+/*  position: relative; */
+
+.banner ul li {
+    float: left;
+    width: 330px;
+    position: relative;
+}
+
+
+/* 把图片放到a标签里面会高几个像素 */
+
+
+/* 用vertical-align:middle解决 */
+
+.banner ul li img {
+    vertical-align: middle;
+}
+
+
+/* CSS中定位使用子绝父相(子类绝对位置和父类相对位置) */
+
+
+/* position: absolute;  */
+
+
+/* 背景颜色利用rgba来设定.6的透明度  */
+
+.banner .des {
+    width: 330px;
+    height: 63px;
+    background-color: rgba(255, 255, 255, .6);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+
+/* 首页banner E */
+
+
+/* 首页搜索 B */
+
+
+/* 设置搜索框的高度/背景颜色 */
+
+.search {
+    height: 100px;
+    background-color: #3F3A32;
+    overflow: hidden;
+}
+
+
+/* 设置搜索框中间的样式 */
+
+.search .s_center {
+    height: 77px;
+    width: 728px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 12px;
+}
+
+
+/* 去掉搜索框外面的边框 
+outline: none;*/
+
+
+/* 把搜索框里面的文字向右边移45像素 */
+
+.search .s_center .txt {
+    width: 510px;
+    height: 77px;
+    outline: none;
+    font: normal normal 18px "微软雅黑";
+    padding-left: 45px;
+}
+
+.search .s_center .btn {
+    width: 171px;
+    height: 77px;
+    background-color: red;
+    border: none;
+    outline: none;
+    font: normal normal 18px "微软雅黑";
+    color: #ffffff;
+}
+
+
+/* 首页搜索 E */
+
+
+/* 首页菜单 B */
+
+
+/* 为首页菜单设置 */
+
+
+/* 把超出父容器的内容切掉
+ overflow: hidden;*/
+
+.menu {
+    overflow: hidden;
+}
+
+.menu .img {
+    width: 1010px;
+}
+
+.menu .img li {
+    width: 334px;
+    float: left;
+}
+
+.menu .img li a {
+    width: 334px;
+    height: 208px;
+}
+
+.menu .img img {
+    vertical-align: middle;
+}
+
+.menu .img .word {
+    width: 334px;
+    height: 57px;
+    background-color: #ffffff;
+}
+
+
+/* 首页菜单 E */
+
+
+/* 首页食材 B */
+
+.food {
+    overflow: hidden;
+}
+
+
+/* 设置食材的左浮动/高度/宽度/字体属性/居中 */
+
+.food .f_nav li {
+    float: left;
+    height: 42px;
+    width: 103px;
+    font: normal 700 22px/42px "微软雅黑";
+    text-align: center;
+}
+
+.food .f_nav li a {
+    color: #666666;
+}
+
+.food .f_img {
+    width: 1010px;
+}
+
+.food .f_img li {
+    float: left;
+    width: 200px;
+    height: 129px;
+    background-color: #ffffff;
+    line-height: 129px;
+    text-align: center;
+    position: relative;
+}
+
+.food .f_img li img {
+    vertical-align: middle;
+}
+
+.food .f_img li span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, .6);
+    line-height: 60px;
+    font: normal 700 18px/60px "微软雅黑";
+}
+
+
+/* 首页食材 E */

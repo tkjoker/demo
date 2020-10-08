@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 高阶函数的英文叫做Higher-order function
+        // JavaScript的函数其实都指向某个变量，既然变量可以指向函数，函数的参数可以接收变量，那么一个函数接收另一个函数作为参数，这就是高阶函数
+
+        // 一个最简单的高阶函数:
+        function add(x, y, f) {
+            return f(x) + f(y);
+        }
+        // 当我们调用add(-5,6,Math.abs)时，参数x,y和f分别接收-5,6,Math.abs
+        // 可以推导计算过程是
+        // x = -5;
+        // y = 6;
+        // f = Math.abs;
+        // f(x) + f(y) ==> Math.abs(-5) + Math.abs(6) ==> 11;
+        // return 11;
+
+        // 用代码验证一下
+        'use strict';
+
+        function add(x, y, f) {
+            return f(x) + f(y);
+        }
+        var x = add(-5, 6, Math.abs); // 11
+        console.log(x);
+
+        // 编写高阶函数就是为了让函数的参数可以接收别的函数
+        // map()方法定义在JavaScript的Array中，我们调用Array的map()方法，传入我们自己的函数，就得到了一个新的Array作为结果
+        'use strict';
+
+        function pow(x) {
+            return x * x;
+        }
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var results = arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+        console.log(results); // [1,4,9,16,25,36,49,64,81]
+        // map()作为高阶函数，事实上它把运算规则抽象化了，不仅可以计算简单的f(x)=x*x，还可以把Array的所有数字转为字符串
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.map(String); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+        // 再来看reduce的用法。Array的reduce()把一个函数在这个Array的[x1,x2,x3...]上，这个函数必须接收两个参数
+        // reduce()把结果继续和序列的下一个元素做累积结算
+        [x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4);
+        // 比如对一个Array求和，就可以用reduce实现
+        var arr = [1, 3, 5, 7, 9];
+        arr.reduce(function(x, y) {
+            return x + y;
+        }); // 25
+
+        // 练习用reduce()求积
+        function product(arr) {
+            return arr.reduce((x, y) => x * y);
+        }
+        // 把[1, 3, 5, 7, 9]变换成整数13579，reduce()也能派上用场
+        var arr = [1, 3, 5, 7, 9];
+        arr.reduce(function(x, y) {
+            return x * 10 + y;
+            // 计算过程 第一次1*10+3 第二次13*10+5 第三次135*10+7 第四次1357*10+9=13579 
+        })
+
+        // 练习！不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
+        'use strict';
+        // 掌声送给社会人 隐式类型转换，会将操作数转换成数字类型
+        function string2int(s) {
+            return s * 1;
+        }
+
+        // 练习！请把用户输入的不规范的英文名字，变成首字母大写，其他小写的规范名字
+        // 输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+        'use strict';
+
+        function normalize(arr) {
+            return arr.map(x => {
+                return x[0].toUpperCase() + x.substr(1).toLowerCase();
+                // substr() 方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+                // 第一个字母大写，其他字母小写
+            })
+        }
+        // 测试:
+        if (normalize(['adam', 'LISA', 'barT']).toString() === ['Adam', 'Lisa', 'Bart'].toString()) {
+            console.log('测试通过!');
+        } else {
+            console.log('测试失败!');
+        }
+
+        // 练习！小明希望利用map()把字符串变成整数，他写的代码很简洁：
+        'use strict';
+
+        var arr = ['1', '2', '3'];
+        var r;
+        r = arr.map(x => {
+            return parseInt(x)
+        });
+        console.log(r);
+
+        // filter，常用操作，用于把Array的某些元素过滤掉，然后返回剩下的元素
+        // 和map()类似，Array的filter()也接收一个函数。和map()不同的是，filter()把传入的函数依次作用于每个元素。根据返回true/false决定保留还是丢弃
+
+        // 例如在一个Array中，删掉偶数，只保留奇数，可以这么写
+        var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+        var r = arr.filter(function(x) {
+            return x % 2 !== 0;
+        });
+        r; // [1, 5, 9, 15]
+
+        // 把一个Array中的空字符串删掉，可以这么写
+        var arr = ['A', '', 'B', null, undefined, 'C', ''];
+        var r = arr.filter(function(s) {
+            return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
+        });
+        // filter()这个高阶函数，关键在于正确实现一个'筛选'函数
+
+        // 回调函数，filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素。
+        // 回调函数还可以接收另外两个参数，表示元素的位置和数组本身
+        var arr = ['A', 'B', 'C'];
+        var r = arr.filter(function(element, index, self) {
+            console.log(element); // 依次打印'A', 'B', 'C'
+            console.log(index); // 依次打印 0,1,2
+            console.log(self); // self就是变量arr,打印self就是打印变量arr
+            return true;
+        });
+
+        // 利用filter，可以巧妙的去除Array的重复元素
+        'use strict';
+
+        var
+            r,
+            arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+        r = arr.filter(function(element, index, self) {
+            return self.indexOf(element) === index;
+            // 去除重复元素依靠的是indexOf总是返回第一个元素的位置，后续的重复元素位置与indexOf返回的位置不相等，因此被filter过滤掉
+        });
+
+        // 请尝试用filter()筛选出素数
+
+        // 先问是不是，再问为什么！！
+        // 素数一般指质数。质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。
+        // 那么1就不是素数，所以代码要把1这个情况单独写出来
+        // 因此素数=质数=用这个数本身去除以(2,3,4,...,++i)如果能除尽就不是素数=if循环去判断a%i===0
+        'use strict';
+
+        return arr.filter(a => {
+
+            // 只需判断到根号下这个数就行
+            // ++i和i++的区别是:++i是i先自增再访问i，i++是先访问i再自增，他们的目的都是i=i+1
+
+            // 很明显，偶数不是素数
+            // 先把偶数排除掉，排除偶数的方法就是排除2的倍数(包括2本身)，通过i从2开始自增，来去掉所有的偶数
+            for (let i = 2; i * i <= a; ++i) {
+
+                if (a % i === 0) {
+
+                    return false;
+
+                }
+
+            }
+
+            // 1这个非素数会被漏下来
+
+            return a <= 1 ? false : true;
+
+        });
+
+        // 排序算法，在程序中经常用到的算法。无论是冒泡排序还是快速排序，排序的核心是比较两个元素的大小
+
+        // 冒泡排序，取冒泡这个名称是因为从小到大排序就像鱼在水里吐泡泡，从小到大
+        // 冒泡排序效率较低
+        // 讲人话版本!
+        // 1.第i次'冒泡'过程从序列尾部遍历至第i个元素
+        // 2.对于每次'冒泡'过程，比较每个正在遍历的元素与前一个元素的大小关系，如果不满足则交换两者位置
+        // 3.持续1-2步骤直到对每个位置都进行1次'冒泡'为止
+
+        // 冒泡排序优化代码
+        // 对于第一轮之后的循环仍然会进行和全部元素的比较，但是之前的循环已经将其排序正确了
+        // 所以可以从内循环减去外循环已经进行过的轮数，避免不必要的排序
+        const bubbleSort = (arr) => {
+            const length = arr.length;
+            for (let i = 0; i < length; i++) { //控制循环次数
+                for (let j = i; j < length - 1 - i; j++) { //进行迭代循环比较足以-i
+                    if (arr[j] > arr[j + 1]) {
+                        let swap = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = swap;
+                    }
+                }
+            }
+        }
+
+        // 快速排序
+        // 快速排序由于排序效率较高，经常被采用。再加上快速排序思想——分治法确实实用，是一种既不浪费空间也可以快一点的算法
+        // 先从数列中取出一个数作为'基准'，然后把比'基准'大的数放到基准右边，比'基准'小的数放到基准左边
+        // 再对左右区间重复第二步，直到区间只有一个数
+        // 算法实现代码
+        var quickSort = function(arr) {
+            // 如果数组只有1个元素，那么排序就自动结束，反之就是再没达到就剩下1个元素之前，会一直执行
+            if (arr.length <= 1) {
+                return arr;
+            }
+            var pivotIndex = Math.floor(arr.length / 2); //基准位置（理论上可任意选取）
+            var pivot = arr.splice(pivotIndex, 1)[0]; //基准数
+            // 左数组放置比基准数小的数
+            var left = [];
+            // 右数组放置比基准数大的数
+            var right = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] < pivot) {
+                    left.push(arr[i]);
+                } else {
+                    right.push(arr[i]);
+                }
+            }
+            return quickSort(left).concat([pivot], quickSort(right)); //链接左数组、基准数构成的数组、右数组
+            // 把排序好的左数组,基准数,右数组重新组成新数组就完成了!
+
+        };
+
+
+        // 如果是数字，我们可以直接比较。如果是字符串/两个对象，直接比较数学上的大小是没有意义的
+        // 通常规定，对于两个元素x和y，如果认为x<y,则返回-1，如果认为x==y,则返回0，如果认为x>y,则返回1
+        // 这样排序算法就不用关心比较的过程，根据比较结果直接排序
+
+        // JavaScript的Array的sort()方法就是用于排序的，但是排序结果可能跟正常认知不符
+        // 看上去正常的结果:
+        ['Google', 'Apple', 'Microsoft'].sort(); // ['Apple', 'Google', 'Microsoft'];
+
+        // apple排在了最后:
+        // 字符串根据ASCII码进行排序，小写字母a的ASCII码在大写字母后
+        ['Google', 'apple', 'Microsoft'].sort(); // ['Google', 'Microsoft", 'apple']
+
+        // 无法理解的结果:
+        // 这个sort()方法默认把所有元素先转换为String再排序，结果'10'排在了'2'的前面，因为字符'1'比字符'2'的ASCII码小
+        [10, 20, 1, 2].sort(); // [1, 10, 2, 20]
+
+        // 幸运的是，sort()方法也是一个高阶函数，它可以接收一个比较函数来实现自定义的排序！
+        // 要按数字大小排序，我们可以这样写:
+        'use strict';
+
+        var arr = [10, 20, 1, 2];
+        arr.sort(function(x, y) {
+            if (x < y) {
+                return -1;
+            }
+            if (x > y) {
+                return 1;
+            }
+            return 0;
+        });
+        console.log(arr); // [1, 2, 10, 20]
+
+        // 如果要倒序排列，我们可以把大的数放前面
+        var arr = [10, 20, 1, 2];
+        arr.sort(function(x, y) {
+            if (x < y) {
+                return 1;
+            }
+            if (x > y) {
+                return -1;
+            }
+            return 0;
+        }); // [20, 10, 2, 1]
+
+        // 默认情况下，对字符串排序，是按照ASCII的大小作比较，现在我们提出排序应该忽略大小写，按照字母排序，只要我们定义忽略大小写的比较就可以
+        var arr = ['Google', 'apple', 'Microsoft'];
+        arr.sort(function(s1, s2) {
+            // 忽略大小写的比较算法可以简化成->把字符串全部变成大写(小写)->再做比较->再排序
+            x1 = s1.toUpperCase();
+            x2 = s2.toUpperCase();
+            if (x1 < x2) {
+                return -1;
+            }
+            if (x1 > x2) {
+                return 1;
+            }
+            return 0;
+        }); // ['apple', 'Google', 'Microsoft']
+
+        // 友情提示!    sort()方法会直接对Array进行修改,它返回的结果仍是当前Array
+        var a1 = ['B', 'A', 'C'];
+        var a2 = a1.sort();
+        a1; // ['A', 'B', 'C']
+        a2; // ['A', 'B', 'C']
+        a1 === a2; // true, a1和a2是同一对象
+
+        // 对于数组，除了map()、reduce、filter()、sort()这些方法可以传入一个函数外。Array对象提供了很多非常使用的高阶函数
+        // every()方法可以判断数组的所有元素是否满足测试条件
+        // 给定一个包含若干字符串的数组，判断所有字符串是否满足指定的测试条件。满足条件返回true，不满足条件返回false。
+        'use strict';
+        var arr = ['Apple', 'pear', 'orange'];
+        console.log(arr.every(function(s) {
+            return s.length > 0;
+        })); // true, 因为每个元素都满足s.length>0
+
+        console.log(arr.every(function(s) {
+            return s.toLowerCase() === s;
+        })); // false, 因为不是每个元素都全部是小写
+
+        // find()方法用于查找符合条件的第一个元素,如果找到了，返回这个元素，否则返回undefined
+        'use strict';
+        var arr = ['Apple', 'pear', 'orange'];
+        console.log(arr.find(function(s) {
+            return s.toLowerCase() === s;
+        })); // 'pear', 因为pear全部是小写
+
+        console.log(arr.find(function(s) {
+            return s.toUpperCase() === s;
+        })); // undefined, 因为没有全部是大写的元素
+
+        // findIndex()和find()类似，也是查找符合条件的第一个元素，不同的地方在于findIndex()会返回这个元素的索引，没找到会返回-1
+        'use strict';
+        var arr = ['Apple', 'pear', 'orange'];
+        console.log(arr.findIndex(function(s) {
+            return s.toLowerCase() === s;
+        })); // 1, 因为'pear'的索引是1
+
+        console.log(arr.findIndex(function(s) {
+            return s.toUpperCase() === s;
+        })); // -1
+
+        // forEach()和map()类似，它也把每个元素依次作用于传入的参数，但不会返回新的数组。常用于遍历数组，不需要返回值
+        'use strict';
+        var arr = ['Apple', 'pear', 'orange'];
+        arr.forEach(console.log); // 依次打印每个元素
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

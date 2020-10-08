@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // ES6标准新增了一种新的函数:Arrow Function(箭头函数)
+        // 为什么叫Arrow Function，是因为它的定义用了一个箭头:
+        x => x * x
+
+        // 箭头函数相当于匿名函数，有两种格式
+
+        // 简单的格式，只包含一个表达式，省略掉(...)、return
+        var fn = x => x * x;
+
+        // 复杂的格式，可以包含多个表达式，不能省略(...)、return
+        x => {
+            if (x > 0) {
+                return x * x;
+            } else {
+                return -x * x;
+            }
+        }
+
+        // 如果参数有多个，需要用()括起来
+        // 两个参数:
+        (x, y) => x * x + y * y;
+
+        // 无参数:
+        () => 3.14;
+
+        // 可变参数:
+        (x, y, ...rest) => {
+            var i, sum = x + y;
+            for (i = 0; i < rest.length; i++) {
+                sum += rest[i];
+            }
+            return sum;
+        };
+
+        // 如果要返回一个对象
+        // ok:
+        x => ({
+            foo: x
+        })
+
+        // 回顾之前的例子，由于JavaScript对this绑定错误的处理
+        var obj = {
+            birth: 1990,
+            getAge: function() {
+                var b = this.birth; // 1990
+                var fn = function() {
+                    return new Date().getFullYear() - this.birth; // this指向window或undefined
+                };
+                return fn();
+            }
+        };
+
+        // 现在使用箭头函数去修复
+        var obj = {
+            birth: 1990,
+            getAge: function() {
+                var b = this.birth; // 1990
+                var fn = () => new Date().getFullYear() - this.birth; // this指向obj对象
+                return fn();
+            }
+        };
+        obj.getAge(); // 30
+
+
+        // this在箭头函数中会按照词法作用域绑定，所以用call()或apply()调用箭头函数时，无法对this进行绑定
+        var obj = {
+            birth: 1990,
+            getAge: function(year) {
+                var b = this.birth; // 1990
+                var fn = (y) => y - this.birth; // this.birth仍是1990
+                return fn.call({
+                    birth: 2000
+                }, year);
+            }
+        };
+        obj.getAge(2015); // 25
+
+        // 练习! 请使用箭头函数简化排序时传入的函数
+        'use strict'
+        var arr = [10, 20, 1, 2];
+        // 利用前面学的sort()排序，x-y意思是拿x和y作比较，如果x比y小，会得到-1，x比y大会得到1，再根据-1，1去排序
+
+        // 正序
+        arr.sort((x, y) => {
+            return x - y;
+        });
+        console.log(arr); // [1, 2, 10, 20]
+
+        // 倒序
+        arr.sort((x, y) => {
+            return y - x;
+        });
+        console.log(arr); // [20, 10, 2, 1]
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

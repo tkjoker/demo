@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // if...else...练习题！！
+        // 小明身高1.75,体重80.5kg。请根据BMI公式(体重除以身高的平方)帮小明算出他的BMI指数，并根据BMI指数
+        // 低于18.5：过轻
+        // 18.5-25：正常
+        // 25-28：过重
+        // 28-32：肥胖
+        // 高于32：严重肥胖
+        // 用if...else...判断并显示结果
+        'use strict';
+
+        var height = parseFloat(prompt('请输入身高(m):'));
+
+        var weight = parseFloat(prompt('请输入体重(kg):'));
+
+        //数值和指标都显示出来，还加了点互动
+
+        var bmi = weight / (height * height);
+
+        if (bmi < 18.5) {
+            console.log(`您的BMI的值为${bmi}`), console.log('指数过轻，兄弟你要多吃点哦')
+        } else if (bmi <= 25) {
+            console.log(`您的BMI的值为${bmi}`), console.log('指数正常，继续保持哦')
+        } else if (bmi <= 28) {
+            console.log(`您的BMI的值为${bmi}`), console.log('指数过重，要适当运动哦')
+        } else if (bmi <= 32) {
+            console.log(`您的BMI的值为${bmi}`), console.log('指数肥胖，你要减肥啦！')
+        } else {
+            console.log(`您的BMI的值为${bmi}简直惨不忍睹`), console.log('指数严重肥胖，你别吃了！')
+        }
+
+
+
+        if (condition) {
+            statement_1;
+        } else {
+            statement_2;
+        } //推荐使用严格的语句块模式，语句else可选
+
+        // 你也可以组合语句通过使用 else if 来测试连续多种条件判断，就像下面一样:
+        if (condition_1) {
+            statement_1;
+        } else if (condition_2) {
+            statement_2;
+        } else if (condition_n_1) {
+            statement_n;
+        } else {
+            statement_last;
+        }
+
+        // 如果 fruittype 等于 "Bananas", 程序匹配到对应 "Bananas" 的case 语句
+        // 并执行相关语句。 当执行到 break 时，程序结束了 switch 并执行 switch 后面的语句。
+        // 如果不写 break ，那么程序将会执行 case "Cherries" 下的语句。
+        switch (fruittype) {
+            case "Oranges":
+                document.write("Oranges are $0.59 a pound.<br>");
+                break;
+            case "Apples":
+                document.write("Apples are $0.32 a pound.<br>");
+                break;
+            case "Bananas":
+                document.write("Bananas are $0.48 a pound.<br>");
+                break;
+            case "Cherries":
+                document.write("Cherries are $3.00 a pound.<br>");
+                break;
+            case "Mangoes":
+            case "Papayas":
+                document.write("Mangoes and papayas are $2.79 a pound.<br>");
+                break;
+            default:
+                document.write("Sorry, we are out of " + fruittype + ".<br>");
+        }
+        document.write("Is there anything else you'd like?<br>");
+
+        // 天气预报部分
+        let select = document.querySelector('select');
+        let para = document.querySelector('p');
+
+        select.addEventListener('change', setWeather);
+
+        function setWeather() {
+            let choice = select.value;
+
+            if (choice === 'sunny') {
+                para.textContent = 'It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.';
+            } else if (choice === 'rainy') {
+                para.textContent = 'Rain is falling outside; take a rain coat and a brolly, and don\'t stay out for too long.';
+            } else if (choice === 'snowing') {
+                para.textContent = 'The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.';
+            } else if (choice === 'overcast') {
+                para.textContent = 'It isn\'t raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.';
+            } else {
+                para.textContent = '';
+            }
+        }
+        // switch (expression) {
+        // case choice1:
+        // run this code
+        // break;
+
+        // case choice2:
+        // run this code instead
+        // break;
+
+        // include as many cases as you like
+
+        // default:
+        // actually, just run this code
+        // }
+
+
+        // 异常处理语句
+        // 用throw语句抛出一个异常并且用try...catch语句捕获处理它
+
+        // 使用throw语句抛出一个异常。当你抛出异常，你规定一个含有值的表达式要被抛出。
+        throw expression;
+
+        // 你可以抛出任意表达式而不是特定一种类型的表达式。
+        throw "Error2"; // String type
+        throw 42; // Number type
+        throw true; // Boolean type
+        throw {
+            toString: function() {
+                return "I'm an object!";
+            }
+        };
+
+        // 注意：你可以在抛出异常时声明一个对象。那你就可以在catch块中查询到对象的属性。
+
+        // Create an object type UserException
+        function UserException(message) {
+            this.message = message;
+            this.name = "UserException";
+        }
+
+        // Make the exception convert to a pretty string when used as
+        // a string (e.g. by the error console)
+        UserException.prototype.toString = function() {
+            return this.name + ': "' + this.message + '"';
+        }
+
+        // Create an instance of the object type and throw it
+        throw new UserException("Value too high");
+
+        // try...catch 语句
+        // 标记一块待尝试的语句，并规定一个以上的响应应该有一个异常被抛出。如果我们抛出一个异常，try...catch语句就捕获它。
+        // 如果try代码块中的代码没有执行成功，那么转入catch代码块。
+        // 如果try代码块没有抛出异常，catch代码块就会被跳过。
+        // finally代码块总会紧跟在try和catch代码块之后执行，但会在try和catch代码块之后的其他代码之前执行！
+
+        // 示例，调用了一个函数从一个数组中根据传递值来获取一个月份名称。
+        // 如果该值与月份数值不相符，会抛出一个带有"InvalidMonthNo"值的异常
+        // 然后在捕捉快语句中设monthName变量为unknown
+        function getMonthName(mo) {
+            mo = mo - 1; // Adjust month number for array index (1 = Jan, 12 = Dec)
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            if (months[mo]) {
+                return months[mo];
+            } else {
+                throw "InvalidMonthNo"; //throw keyword is used here
+            }
+        }
+
+        try { // statements to try
+            monthName = getMonthName(myMonth); // function could throw exception
+        } catch (e) {
+            monthName = "unknown";
+            logMyErrors(e); // pass exception object to error handler -> your own function
+        }
+
+        // 当异常出现时，跳到catch块
+        try {
+            throw "myException" // generates an exception
+        } catch (e) {
+            // statements to handle any exceptions
+            logMyErrors(e) // pass exception object to error handler
+        }
+
+        // finally块
+        // 在try和catch块完成之后，下面接着try...catch的语句之前执行的语句
+        // finally块无论是否抛出异常都会执行
+        // 如果抛出了一个异常，就算没有异常处理，finally块里的语句也会执行
+
+        // 你可以用finally块来令你的脚本在异常发生时优雅地退出
+        // 接下来的例子，用文件处理语句打开了一个文件
+        // 如果在文件打开时一个异常抛出，finally块会在脚本错误之前关闭文件
+
+        openMyFile();
+        try {
+            writeMyFile(theData); //This may throw a error
+        } catch (e) {
+            handleError(e); // If we got a error we handle it
+        } finally {
+            closeMyFile(); // always close the resource
+        }
+
+        // 如果finally块返回了一个值，该值会是整个try-catch-finally流程的返回值，不管在try和catch块中语句返回了什么
+        function f() {
+            try {
+                console.log(0);
+                throw "bogus";
+            } catch (e) {
+                console.log(1);
+                return true; // this return statement is suspended
+                // until finally block has completed
+                console.log(2); // not reachable
+            } finally {
+                console.log(3);
+                return false; // overwrites the previous "return"
+                console.log(4); // not reachable
+            }
+            // "return false" is executed now  
+            console.log(5); // not reachable
+        }
+        f(); // console 0, 1, 3; returns false
+
+        // 用finally块覆盖返回值也适用于在catch块内抛出或重新抛出的异常
+        function f() {
+            try {
+                throw 'bogus';
+            } catch (e) {
+                console.log('caught inner "bogus"');
+                throw e; // this throw statement is suspended until 
+                // finally block has completed
+            } finally {
+                return false; // overwrites the previous "throw"
+            }
+            // "return false" is executed now
+        }
+
+        try {
+            f();
+        } catch (e) {
+            // this is never reached because the throw inside
+            // the catch is overwritten
+            // by the return in finally
+            console.log('caught outer "bogus"');
+        }
+
+        // OUTPUT
+        // caught inner "bogus"
+
+        // 使用Error对象
+        // 根据错误内存，你或许可以用'name'和'message'获取更精炼的信息
+        // 'name'提供了常规的错误类(如'DOMException'和'Error')
+        // 'message'通常提供了一条从错误对象转换成字符串的简明信息
+
+        // 在抛出你个人所为的异常时，为了充分利用那些属性(比如你的catch块不能分辨是你个人所为还是系统异常时)
+        // 你可以使用Error构造函数
+
+        function doSomethingErrorProne() {
+            if (ourCodeMakesAMistake()) {
+                throw (new Error('The message'));
+            } else {
+                doSomethingToGetAJavascriptError();
+            }
+        }
+        // ......
+        try {
+            doSomethingErrorProne();
+        } catch (e) {
+            console.log(e.name); // logs 'Error'
+            console.log(e.message); // logs 'The message' or a JavaScript error message)
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

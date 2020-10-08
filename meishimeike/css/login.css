@@ -1,0 +1,93 @@
+/* 内容 B */
+
+.main {
+    height: 800px;
+}
+
+.main .m_left {
+    margin-top: 130px;
+}
+
+
+/* 设置登录窗口容器的属性 */
+
+.main .m_right {
+    width: 450px;
+    height: 620px;
+    background-color: #ffffff;
+    margin-top: 85px;
+    padding: 0 16px;
+}
+
+
+/* 设置美食美刻h2标题的属性，容器100px，垂直居中 */
+
+.main .m_right h2 {
+    font: normal 400 30px "微软雅黑";
+    height: 100px;
+    line-height: 100px;
+    padding-left: 25px;
+}
+
+
+/* 为用户名和密码输入框设置行高/宽度/外边框/字体大小/左浮动50像素*/
+
+.main .m_right .uName_pwd input {
+    width: 398px;
+    height: 58px;
+    border: 1px solid;
+    font-size: 24px;
+    padding-left: 50px;
+}
+
+.main .m_right .btn {
+    margin-top: 34px;
+}
+
+
+/* 为忘记密码？设置高度/行高/字体大小 */
+
+.main .m_right .remember {
+    height: 100px;
+    font: normal normal 24px/100px "微软雅黑";
+}
+
+.main .m_right .remember input {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+
+/* 为登录框设置宽度/高度/颜色/字体大小/字体颜色 */
+
+.main .m_right .loginBtn {
+    width: 450px;
+    height: 60px;
+    background-color: #e60012;
+    font-size: 24px;
+    color: white;
+}
+
+.main .m_right .other {
+    height: 130px;
+    font: normal normal 20px/130px "微软雅黑";
+}
+
+.main .m_right .login_type li {
+    font-size: 15px;
+}
+
+.main .m_right .login_type li a {
+    color: #666666;
+}
+
+
+/* 为中间的微博登录单独设置位置，使其居中 */
+
+.main .login_type .l_t_c {
+    margin-left: 140px;
+}
+
+
+/* 内容 E */

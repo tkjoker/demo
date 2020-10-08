@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = new Array1(element0, element1, elementN)
+        let arr2 = Array(element0, element1, elementN);
+        let arr3 = [element0, element1, elementN];
+
+        // 创建一个长度不为0,但是又没有任何元素的数组,可选以下任何一种方式:
+        let arr4 = new Array(arrayLength);
+        let arr5 = Array(arrayLength);
+
+        // 这样有同样的效果
+        let arr = [];
+        arr.length = arrayLength;
+
+        // 以上代码,数组长度(arrayLength)必须为一个数字(Number)。
+        // 否则，将会创建一个只有单个(所输入的)元素的数组。
+        // 调用arr.length会返回数组长度，但是数组实际上包含了空的(undefined)元素。
+        // 因此在数组上使用for...in循环，将不会返回任何的值
+
+        // 除了如上所示创建新定义的变量，数组(array)也可以作为一个属性(property)分配给一个新的或者已经存在的对象(object)
+        let obj = {};
+        // ...
+        obj.prop = [element0, element1, elementN];
+
+        // OR
+        let obj = {
+            prop: [element0, element1, elementN]
+        }
+
+        // 如果你希望用单个元素初始化一个数组，而这个元素恰好又是数字(Number)
+        let arr = [42] // 创建一个只有唯一元素的数组
+            // the number 42
+        let arr = Array(42) // 创建一个没有元素的数组，
+            // 但是数组的长度被设置成42
+
+        // 上面的代码与下面的代码等价
+        let arr = [];
+        arr.length = 42;
+
+        // 如果N不是一个整数，调用Arrry(N)将会报RangeError错误
+        let arr = Array(9.3); // RangeError: Invalid array length
+
+        // 填充数组
+        // 通过给数组赋值填充数组
+        let emp = [];
+        emp[0] = "Casey Jones";
+        emp[1] = "Phil Lesh";
+        emp[2] = "August West";
+
+        let arr = [];
+        arr[3.4] = "Oranges";
+        console.log(arr.length); // 0
+        console.log(arr.hasOwnProperty(3.4)); // true
+        // 你也可以在创建数组的时候去填充它：
+        let myArray = new Array("Hello", myVar, 3.14159);
+        let myArray = ["Mango", "Apple", "Orange"]
+
+        // 理解length
+        // JavaScript数组索引作为属性名，总是返回最后一个元素的索引值加1。
+        // JavaScript数组索引是基于0的:从0开始，而不是1。意味着数组长度属性比最大的索引值大1。
+        let cats = [];
+        cats[30] = ['Dusty'];
+        console.log(cats.length); // 31
+
+        // 你也可以分配length属性。写一个小于数组元素数量的值会缩短数组，写0会彻底清空数组:
+        let cats = ['Dusty', 'Misty', 'Twiggy'];
+        console.log(cats.length); // 3
+
+        cats.length = 2;
+        console.log(cats); // logs "Dusty,Misty" - Twiggy has been removed
+
+        cats.length = 0;
+        console.log(cats); // logs nothing; the cats array is empty
+
+        cats.length = 3;
+        console.log(cats); // [undefined, undefined, undefined]
+
+        // 遍历数组
+        // 遍历数组元素并以某种方式处理每个元素是一个常见的操作。以下是最简单的模式:
+        let colors = ['red', 'green', 'blue'];
+        for (var i = 0; i < colors.length; i++) {
+            console.log(colors[i]);
+        }
+        // 如果你确定数组中没有一个元素的求值是false——如果你的数组只包含DOM节点
+        let divs = document.getElementsByTagName('div');
+        for (var i = 0, div; div = divs[i]; i++) {
+            /* Process div in some way */
+        } // 这样避免了检测数组长度的开销，额外的好处是确保了div变量当前在每次循环中都被重新赋值为当前项。
+
+        // forEach()方法提供了遍历数组元素的其他方法:
+        let colors = ['red', 'green', 'blue'];
+        colors.forEach(function(color) {
+            console.log(color);
+        });
+        // 被传递给forEach的函数会在数组每个元素像上执行一次，元素作为参数传递给该函数。
+        // 未赋值的值不会在forEach循环迭代
+
+        // 注意在数组定义时省略的元素不会在forEach遍历时被列出，但是手动赋值为undefined的元素是会被列出的:
+
+        let array = ['first', 'second', , 'fourth'];
+
+        // returns ['first', 'second', 'fourth'];
+        array.forEach(function(element) {
+            console.log(element);
+        })
+
+        if (array[2] === undefined) {
+            console.log('array[2] is undefined');
+        } // true
+
+        let array = ['first', 'second', undefined, 'fourth'];
+
+        // returns ['first', 'second', undefined, 'fourth'];
+        array.forEach(function(element) {
+            console.log(element);
+        })
+
+        // 一旦 JavaScript 元素被保存为标准的对象属性，通过for...in 循环来迭代数组将变得不明智，因为正常元素和所有可枚举的属性都会被列出。
+
+        // 数组的方法(array methods)
+        // Array对象具有下列方法:
+
+        // concat()连接两个数组并返回一个新数组
+        let myArray = new Array("1", "2", "3");
+        myArray = myArray.concat("a", "b", "c");
+        // myArray is now ["1", "2", "3", "a", "b", "c"]
+
+        // join(deliminator = ',') 将数组的所有元素连接成一个字符串。
+        let myArray = new Array("Wind", "Rain", "Fire");
+        let list = myArray.join(" - "); // list is "Wind - Rain - Fire"
+
+        // push() 在数组末尾添加一个或多个元素，并返回数组操作后的长度。
+        let myArray = new Array("1", "2");
+        myArray.push("3"); // myArray is now ["1", "2", "3"]
+
+        // pop() 从数组移出最后一个元素，并返回该元素。
+        let myArray = new Array("1", "2", "3");
+        let last = myArray.pop(); // myArray is now ["1", "2"], last = "3"
+
+        // shift() 从数组移出第一个元素，并返回该元素。
+        let myArray = new Array("1", "2", "3");
+        let first = myArray.shift(); // myArray is now ["2", "3"], first is "1"
+
+        // unshift() 在数组开头添加一个或多个元素，并返回数组的新长度。
+        let myArray = new Array("1", "2", "3");
+        myArray.unshift("4", "5"); // myArray becomes ["4", "5", "1", "2", "3"]
+
+        // slice(start_index, upto_index) 从数组提取一个片段，并作为一个新数组返回。
+        let myArray = new Array("a", "b", "c", "d", "e");
+        myArray = myArray.slice(1, 4); // 包含索引1，不包括索引4 returning [ "b", "c", "d"]
+
+        // splice(index, count_to_remove, addElement1, addElement2, ...)从数组移出一些元素，（可选）并替换它们。
+        let myArray = new Array("1", "2", "3", "4", "5");
+        myArray.splice(1, 3, "a", "b", "c", "d");
+        // 旧数组["1","2","3","4","5"]
+        // 把旧数组中索引为1之后的3个元素替换成"a", "b", "c", "d"
+        // 新数组现在是["1", "a", "b", "c", "d", "5"]
+        // 这个代码从索引为1开始(也就是数组的第2个元素开始)
+        // 移除掉3个元素, 然后替换进新的一组元素
+        // elements in its place.
+
+        // reverse() 颠倒数组元素的顺序：第一个变成最后一个，最后一个变成第一个。
+        let myArray = new Array("1", "2", "3");
+        myArray.reverse(); // 颠倒数组元素顺序 myArray = [ "3", "2", "1" ]
+
+        // sort() 给数组元素排序。
+        let myArray = new Array("Wind", "Rain", "Fire");
+        myArray.sort(); // 按首字母？顺序排序 myArray = [ "Fire", "Rain", "Wind" ]
+        // sort()可以带一个回调函数来决定怎么比较组元素
+        // 这个回调函数比较2个值，并返回3个值中的1个
+        // 下面的代码通过字符串的最后一个字母进行排序：
+        let sortFn = function(a, b) {
+            if (a[a.length - 1] < b[b.length - 1]) return -1;
+            // 如果 a 小于 b ，返回 -1(或任何负数)
+            if (a[a.length - 1] > b[b.length - 1]) return 1;
+            // 如果 a 大于 b ，返回 1 (或任何正数)
+            if (a[a.length - 1] == b[b.length - 1]) return 0;
+            // 如果 a 和 b 相等，返回 0。
+        }
+        myArray.sort(sortFn); // 按最后一个字母大小进行排序myArray = ["Wind","Fire","Rain"]
+
+        // indexOf(searchElement[, fromIndex]) 在数组中搜索searchElement 并返回第一个匹配的索引。
+        let a = ['a', 'b', 'a', 'b', 'a'];
+        console.log(a.indexOf('b')); // logs 1
+        // Now try again, starting from after the last match
+        console.log(a.indexOf('b', 2)); // logs 3
+        console.log(a.indexOf('z')); // logs -1, because 'z' was not found
+
+        // lastIndexOf(searchElement[, fromIndex]) 和 indexOf 差不多，但这是从结尾开始，并且是反向搜索。
+        let a = ['a', 'b', 'c', 'd', 'a', 'b'];
+        console.log(a.lastIndexOf('b')); // logs 5
+        // Now try again, starting from before the last match
+        console.log(a.lastIndexOf('b', 4)); // logs 1
+        console.log(a.lastIndexOf('z')); // logs -1
+
+        // forEach(callback[, thisObject]) 在数组每个元素项上执行callback ???
+        let a = ['a', 'b', 'c'];
+        a.forEach(function(element) {
+            console.log(element);
+        }); // logs each item in turn
+
+        // map(callback[, thisObject]) 在数组的每个单元项上执行callback函数，并把返回包含回调函数返回值的新数组 ???
+        // (译者注：也就是遍历数组，并通过callback对数组元素进行操作，并将所有操作结果放入数组中并返回该数组)。
+        let a1 = ['a', 'b', 'c'];
+        let a2 = a1.map(function(item) {
+            return item.toUpperCase();
+        });
+        console.log(a2); // logs A,B,C
+
+        // filter(callback[, thisObject]) 返回一个包含所有在回调函数上返回为true的元素的新数组 ???
+        // (译者注：callback在这里担任的是过滤器的角色，当元素符合条件，过滤器就返回true，而filter则会返回所有符合过滤条件的元素)。
+        let a1 = ['a', 10, 'b', 20, 'c', 30];
+        let a2 = a1.filter(function(item) {
+            return typeof item == 'number';
+        });
+        console.log(a2); // logs 10,20,30
+
+        // every(callback[, thisObject]) 当数组中每一个元素在callback上被返回true时就返回true ???
+        // (译者注：同上，every其实类似filter，只不过它的功能是判断是不是数组中的所有元素都符合条件，并且返回的是布尔值)。
+        function isNumber(value) {
+            return typeof value == 'number';
+        }
+        var a1 = [1, 2, 3];
+        console.log(a1.every(isNumber)); // logs true
+        var a2 = [1, '2', 3];
+        console.log(a2.every(isNumber)); // logs false
+
+        // some(callback[, thisObject]) 只要数组中有一项在callback上被返回true，就返回true ???
+        // (译者注：同上，类似every，不过前者要求都符合筛选条件才返回true，后者只要有符合条件的就返回true)。
+        function isNumber(value) {
+            return typeof value == 'number';
+        }
+        let a1 = [1, 2, 3];
+        console.log(a1.some(isNumber)); // logs true
+        let a2 = [1, '2', 3];
+        console.log(a2.some(isNumber)); // logs true
+        let a3 = ['1', '2', '3'];
+        console.log(a3.some(isNumber)); // logs false
+        // 以上方法都带一个被称为迭代方法的的回调函数，因为他们以某种方式迭代整个数组。 ???
+        // 都有一个可选的第二参数 thisObject，如果提供了这个参数，thisObject 变成回调函数内部的 this 关键字的值。
+        // 如果没有提供，例如函数在一个显示的对象上下文外被调用时，this 将引用全局对象(window)
+
+        // 实际上在调用回调函数时传入了3个参数。第一个是当前元素项的值，第二个是它在数组中的索引，第三个是数组本身的一个引用。
+        // JavaScript 函数忽略任何没有在参数列表中命名的参数，因此提供一个只有一个参数的回调函数是安全的，例如 alert 。
+
+        // reduce(callback[, initialValue]) 使用回调函数 callback(firstValue, secondValue) 把数组列表计算成一个单一值
+        // (译者注：他数组元素两两递归处理的方式把数组计算成一个值)
+        let a = [10, 20, 30];
+        let total = a.reduce(function(first, second) {
+            return first + second;
+        }, 0);
+        console.log(total) // Prints 60
+
+        // reduceRight(callback[, initalvalue]) 和 reduce()相似，但这从最后一个元素开始的。
+        // reduce 和 reduceRight 是迭代数组方法中最不被人熟知的两个函数。
+        // 他们应该使用在那些需要把数组的元素两两递归处理，并最终计算成一个单一结果的算法。
+        let a = [10, 20, 30];
+        let total = a.reduce(function(first, second) {
+            return first + second;
+        }, 0);
+        console.log(total) // Prints 60
+
+        // 多维数组
+        // 数组是可以嵌套的，这就意味一个数组可以作为一个元素被包含在另外一个数组里面。
+        // 利用JavaScript数组的这个特性，可以创建多维数组。
+
+        // 以下代码创建了一个二维数组
+        let a = new Array(4);
+        for (i = 0; i < 4; i++) {
+            a[i] = new Array(4);
+            for (j = 0; j < 4; j++) {
+                a[i, j] = "[" + i + "," + j + "]";
+            }
+        }
+
+        // 这个例子创建的数组拥有以下行数据
+        // Row 0: [0,0] [0,1] [0,2] [0,3]
+        // Row 1: [1,0] [1,1] [1,2] [1,3]
+        // Row 2: [2,0] [2,1] [2,2] [2,3]
+        // Row 3: [3,0] [3,1] [3,2] [3,3]
+
+        // 练习！！多维数组
+        // 如果数组的某个元素又是一个Array，则可以形成多维数组，例如：
+        var arr = [
+            [1, 2, 3],
+            [400, 500, 600], '-'
+        ];
+        // 上述Array包含3个元素，其中头两个元素本身也是Array。
+
+        // 练习：如何通过索引取到500这个值：
+        var newArr = arr[1];
+        // 产生一个新数组，新的数组取原数组索引1的数值
+        // newArr; 400,500,600
+        var index = newArr.indexOf(500);
+        // 在新数组里面索引500这个值
+        var x = newArr[index];
+
+        console.log(x); // x应该为500
+
+        // 练习！！Array提供了一种顺序存储一组元素的功能，并可以按索引来读写。
+        // 在新生欢迎会上，你已经拿到了新同学的名单，请排序后显示：欢迎XXX，XXX，XXX和XXX同学！：
+        var arr = ['小明', '小红', '大军', '阿黄'];
+        console.log(`欢迎${arr.sort().slice(0,-1).join(', ')}和${arr[3]}同学!`);
+    </script>
+
+</body>
+
+</html>

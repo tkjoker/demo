@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="10JavaScript第一步.css">
+</head>
+
+<body></body>
+<p>玩家1：小明</p>
+<script>
+    const para = document.querySelector('p');
+
+    para.addEventListener('click', updateName);
+
+    function updateName() {
+        let name = prompt('输入一个新的名字：');
+        para.textContent = '玩家1：' + name;
+    }
+</script>
+
+</body>
+
+</html>
